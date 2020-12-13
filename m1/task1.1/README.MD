@@ -10,15 +10,15 @@
 ![10-16](./screenshots_1/2020-12-13_010635.jpg)  
 ![10-16](./screenshots_1/2020-12-13_011125.jpg)  
 
-17-19. 
+17-19.  
 ![17-19](./screenshots_1/2020-12-13_011836.jpg)  
 
 We have an issue  
-![19](./screenshots_1/2020-12-13_193802.jpg)
+![19](./screenshots_1/2020-12-13_193802.jpg)  
 ![19](./screenshots_1/2020-12-13_193943.jpg)
 
-Resolving merge (styles => develop) conflict 
-![conflict-resolve](./screenshots_1/2020-12-13_194108.jpg)
+Resolving merge (styles => develop) conflict  
+![conflict-resolve](./screenshots_1/2020-12-13_194108.jpg)  
 ![conflict-resolve](./screenshots_1/2020-12-13_194422.jpg)  
 
 21.  Merge develop into master  
@@ -27,7 +27,7 @@ Resolving merge (styles => develop) conflict
 22. Using `git log`  
 ![22](./screenshots_1/2020-12-13_195151.jpg)  
 
-23. Pushing local repo into remote
+23. Pushing local repo into remote  
 ![23](./screenshots_1/2020-12-13_195309.jpg)  
 ![23](./screenshots_1/2020-12-13_195528.jpg)  
 
