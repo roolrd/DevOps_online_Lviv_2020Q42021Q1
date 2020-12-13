@@ -28,7 +28,6 @@ Resolving merge (styles => develop) conflict
 ![22](./screenshots_1/2020-12-13_195151.jpg)  
 
 23. Pushing local repo into remote  
-![23](./screenshots_1/2020-12-13_195309.jpg)  
 ![23](./screenshots_1/2020-12-13_195528.jpg)  
 
 24,26.  
