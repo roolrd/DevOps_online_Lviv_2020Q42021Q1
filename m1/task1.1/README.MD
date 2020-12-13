@@ -44,6 +44,6 @@ Resolving merge (styles => develop) conflict
 ![24,26](./screenshots_1/2020-12-13_201759.jpg)  
 
 
-###DevOps
+### DevOps
 
 >DevOps is a term that combines three: development, operation and testing. That is a methodology that includes the following practices: continues integration and deployment, automated testing, Infrastructure as Code, configuration management, application monitoring.
