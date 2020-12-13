@@ -4,4 +4,4 @@
 1. Installing GIT:
 	git version 2.17.1
 2,5-9.
-	![2,5-9](https://github.com/roolrd/DevOps_online_Lviv_2020Q42021Q1/blob/main/m1/task1.1/screenshots_1/2020-12-13_010243.jpg)
+	![2,5-9](./screenshots_1/2020-12-13_010243.jpg)
