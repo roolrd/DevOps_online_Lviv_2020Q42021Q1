@@ -26,7 +26,7 @@ Oracle VirtualBox, KVM-linux.
  
 ![1.5-1.6](./screenshots/2020-12-15_144246.jpg)
 
-~~~~~~~~~~~~~~~~~~~~~
+***-------------------------------------------
 
 1.8 Export and import VM  
 
