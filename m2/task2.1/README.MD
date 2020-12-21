@@ -15,3 +15,47 @@ Oracle VirtualBox, KVM-linux.
     - **KVM-linux.** A kernel-based virtual machine (KVM) is a project-based upon
  HNU/Linux that has been developed for x86 computers. This is a type 1 hypervisor and 
  VMs gain direct access to the hardware
+ 
+### VIRTUAL BOX
+
+1.1 - 1.4 Updating VirtualBox to v.6.1.16(latest) and creating VMs with latest Ubuntu version  
+
+![1.1-1.4](./screenshots/2020-12-15_122202.jpg)  
+
+1.5 - 1.6 Clone of VM and creating group  
+ 
+![1.5-1.6](./screenshots/2020-12-15_144246.jpg)
+
+~~~~~~~~~~~~~~~~~~~~~
+
+1.8 Export and import VM  
+
+![1.8_1](./screenshots/2020-12-15_172123.jpg)  
+
+![1.8_2](./screenshots/2020-12-15_172456.jpg)  
+
+2.2 Attached USB-drive  
+
+![2.2](./screenshots/2020-12-15_175743.jpg)  
+
+2.3 Shared folder  
+
+![2.3](./screenshots/2020-12-15_203921.jpg)  
+
+2.4 Network settings  
+
+-------------------------------------------------------------------------    
+Mode       | VM->Host | VM<-Host | VM1<->VM2 | VM->Net/Lan | VM<-Net/Lan |  
+-------------------------------------------------------------------------  
+Host-only  |
+-------------------------------------------------------------------------
+Internal   | 
+-------------------------------------------------------------------------
+Bridged    |
+-------------------------------------------------------------------------
+NAT        |
+-------------------------------------------------------------------------
+NATservice |
+-------------------------------------------------------------------------
+
+
