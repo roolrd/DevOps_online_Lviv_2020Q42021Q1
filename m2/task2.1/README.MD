@@ -46,10 +46,10 @@ Oracle VirtualBox, KVM-linux.
 
 |     Mode    | VM->Host | VM<-Host | VM1<->VM2 | VM->Net/Lan | VM<-Net/Lan |
 |:-----------|:--------|:--------|:---------|:-----------|:-----------|
-| Host-only   |          |          |           |             |             |
-| Internal    |          |          |           |             |             |
-| Bridged     |          |          |           |             |             |
-| NAT         |          |          |           |             |             |
-| NAT-service |          |          |           |             |             |
+| Host-only   |    -      |    +      |    -       |      -       |     -       |
+| Internal    |     -     |    -      |      -/+     |       -      |      -       |
+| Bridged     |    +      |    +      |    +       |     +        |     +        |
+| NAT         |     +     |     forward     |      -     |      +       |            |
+| NAT-service |    -      |     -    |     -      |     -        |      -       |
 
 
