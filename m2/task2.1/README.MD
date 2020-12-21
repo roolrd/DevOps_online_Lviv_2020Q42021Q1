@@ -42,6 +42,8 @@ Oracle VirtualBox, KVM-linux.
 
 2.3 Shared folder  
 
+![2.3](./screenshots/2020-12-21_172643.jpg)  
+
 ![2.3](./screenshots/2020-12-15_203921.jpg)  
 
 ![2.3](./screenshots/2020-12-15_203742.jpg)  
@@ -67,7 +69,7 @@ Oracle VirtualBox, KVM-linux.
 
 ![3.2.2_1](./screenshots/2020-12-21_150302.jpg)  
 
-[3.2.2_2](./ub2004_riznyk/ub2004_riznyk.vbox)  
+[3.2.2_2 ub2004_riznyk.vbox](./ub2004_riznyk/ub2004_riznyk.vbox)  
 
 3.2.3 VBoxManage startvm  
 
