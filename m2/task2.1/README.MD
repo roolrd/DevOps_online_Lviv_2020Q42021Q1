@@ -26,7 +26,9 @@ Oracle VirtualBox, KVM-linux.
  
 ![1.5-1.6](./screenshots/2020-12-15_144246.jpg)
 
-***-------------------------------------------
+1.7 Snapshots  
+
+![1.7](./screenshots/2020-12-21_170743.jpg)  
 
 1.8 Export and import VM  
 
@@ -42,6 +44,8 @@ Oracle VirtualBox, KVM-linux.
 
 ![2.3](./screenshots/2020-12-15_203921.jpg)  
 
+![2.3](./screenshots/2020-12-15_203742.jpg)  
+
 2.4 Network settings  
 
 |     Mode    | VM->Host | VM<-Host | VM1<->VM2 | VM->Net/Lan | VM<-Net/Lan |
@@ -53,3 +57,37 @@ Oracle VirtualBox, KVM-linux.
 | NAT-service |    -      |     -    |     -      |     -        |      -       |
 
 
+3. CLI VBoxManage commands  
+
+3.2.1 VBoxManage list, showvminfo  
+
+![3.2.1](./screenshots/2020-12-15_171430.jpg)
+
+3.2.2 VBoxManage createvm  
+
+![3.2.2_1](./screenshots/2020-12-21_150302.jpg)  
+
+[3.2.2_2](./ub2004_riznyk/ub2004_riznyk.vbox)  
+
+3.2.3 VBoxManage startvm  
+
+![3.2.3](./screenshots/2020-12-21_151031.jpg)  
+
+3.2.4 VBoxManage controlvm  
+
+![3.2.4](./screenshots/2020-12-21_152505.jpg)  
+
+3.2.5 VBoxManage modifyvm  
+
+![3.2.5](./screenshots/2020-12-21_153536.jpg)  
+
+3.2.6 VBoxManage clonevm  
+
+![3.2.6](./screenshots/2020-12-21_155059.jpg)  
+
+3.2.7 VBoxManage snapshot  
+
+![3.2.7](./screenshots/2020-12-21_160029.jpg)  
+
+
+### VAGRANT  
