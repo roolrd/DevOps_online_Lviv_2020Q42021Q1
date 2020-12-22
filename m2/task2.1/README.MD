@@ -203,7 +203,3 @@ vagrant init VagrantBox_CentOS7
 vagrant up
 vagrant ssh
 ```
-
-Distributing the Box to HashiCorp's Vagrant Cloud  
-
-![8](./screenshots/2020-12-23_000059.jpg)
