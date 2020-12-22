@@ -154,8 +154,19 @@ sudo yum install nano wget bzip2
 sudo shutdown -r now
 ```
 
-
-
+Configure SSH  
+```
+mkdir -p /home/vagrant/.ssh
+chmod 0700 /home/vagrant/.ssh
+wget --no-check-certificate \
+    https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub \
+    -O /home/vagrant/.ssh/authorized_keys
+chmod 0600 /home/vagrant/.ssh/authorized_keys
+chown -R vagrant /home/vagrant/.ssh
+sudo nano /etc/ssh/sshd_config
+>string will look like "AuthorizedKeysFile %h/.ssh/authorized_keys
+sudo service sshd restart
+```
 
 Install Kernel Headers in CentOS 7  
 ```
@@ -164,3 +175,35 @@ yum install kernel-devel
 ls -l /usr/src/kernels/$(uname -r)  
 uname -r  
 ```
+
+Install Guest tool  
+```
+sudo mount /dev/cdrom /mnt 
+cd /mnt
+sudo ./VBoxLinuxAdditions.run
+```
+
+Compress Box  
+```
+sudo dd if=/dev/zero of=/EMPTY bs=1M
+sudo rm -f /EMPTY
+```
+
+Create work folder for Vagrant Box  
+```
+mkdir ~\Ruslan\vagrant_test\vagrant_boxes
+cd ~\Ruslan\vagrant_test\vagrant_boxes
+```
+
+Create and Test package  
+```
+vagrant package --base VagrantBox_CentOS7
+vagrant box add VagrantBox_CentOS7 package.box
+vagrant init VagrantBox_CentOS7
+vagrant up
+vagrant ssh
+```
+
+Distributing the Box to HashiCorp's Vagrant Cloud  
+
+![8](./screenshots/2020-12-23_000059.jpg)
