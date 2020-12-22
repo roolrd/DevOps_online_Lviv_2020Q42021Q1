@@ -93,3 +93,74 @@ Oracle VirtualBox, KVM-linux.
 
 
 ### VAGRANT  
+
+1-4.  
+
+![1-4_1](./screenshots/2020-12-21_174101.jpg)  
+
+![1-4_1](./screenshots/2020-12-21_235324.jpg)  
+
+5. Connect to the Vagrant VM  
+
+![5](./screenshots/2020-12-21_235910.jpg)  
+
+6. 
+
+![6](./screenshots/2020-12-21_235951.jpg)  
+
+7. Stop and delete  
+
+![7](./screenshots/2020-12-22_001500.jpg)  
+
+8. My own Vagrant Box  
+
+Create a new Virtual Machine with the following settings:  
+Name: VagrantBox_CentOS7  
+Type: Linux  
+Version: Red Hat (64-bit)  
+Memory Size: 512MB  
+New Virtual Disk: [Size: 40 GB]  
+Disable audio  
+Disable USB  
+Disable Floppy  
+Network Adapter 1 is set to NAT  
+Add port-forwarding rule: [Name: SSH, Protocol: TCP, Host IP: blank, Host Port: 2222, Guest IP: blank, Guest Port: 22]  
+
+Install CentOS7  
+default user - vagrant  
+password - vagrant  
+
+Set Root Password  
+```
+sudo passwd root  
+<vagrant>  
+su - 
+```
+
+Setup the Super User  
+```
+visudo -f /etc/sudoers.d/vagrant
+# add vagrant user
+vagrant ALL=(ALL) NOPASSWD:ALL
+exit
+sudo pwd
+```
+
+Updating and installing 
+```
+sudo yum update -y
+sudo yum upgrade -y
+sudo yum install nano wget bzip2
+sudo shutdown -r now
+```
+
+
+
+
+Install Kernel Headers in CentOS 7  
+```
+cd /usr/src/kernels/  
+yum install kernel-devel  
+ls -l /usr/src/kernels/$(uname -r)  
+uname -r  
+```
