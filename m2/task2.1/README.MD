@@ -130,7 +130,7 @@ Install CentOS7
 default user - vagrant  
 password - vagrant  
 
-Set Root Password  
+Set Root Password (optional) 
 ```
 sudo passwd root  
 <vagrant>  
@@ -146,11 +146,14 @@ exit
 sudo pwd
 ```
 
+
+
 Updating and installing 
 ```
 sudo yum update -y
 sudo yum upgrade -y
-sudo yum install nano wget bzip2
+sudo yum install epel-release
+sudo yum install nano wget bzip2 htop vim tree mc
 sudo shutdown -r now
 ```
 
@@ -171,12 +174,16 @@ sudo service sshd restart
 Install Kernel Headers in CentOS 7  
 ```
 cd /usr/src/kernels/  
-yum install kernel-devel  
+sudo yum install kernel-devel  
 ls -l /usr/src/kernels/$(uname -r)  
-uname -r  
+uname -r
+sudo yum install kernel-headers
+sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo yum install perl gcc dkms kernel-devel kernel-headers make bzip2
 ```
 
-Install Guest tool  
+Install Guest tool 
+add VBoxLinuxAdditions.iso on the VirtualBox/Storage  
 ```
 sudo mount /dev/cdrom /mnt 
 cd /mnt
@@ -187,19 +194,21 @@ Compress Box
 ```
 sudo dd if=/dev/zero of=/EMPTY bs=1M
 sudo rm -f /EMPTY
+sudo poweroff
 ```
 
-Create work folder for Vagrant Box  
+Create work folder for Vagrant Box on the host   
 ```
-mkdir ~\Ruslan\vagrant_test\vagrant_boxes
-cd ~\Ruslan\vagrant_test\vagrant_boxes
+mkdir Ruslan\vagrant_test\vagrant_boxes
+cd Ruslan\vagrant_test\vagrant_boxes
 ```
 
 Create and Test package  
 ```
-vagrant package --base VagrantBox_CentOS7
-vagrant box add VagrantBox_CentOS7 package.box
-vagrant init VagrantBox_CentOS7
+vagrant package --base Vagrant_CentOS7
+vagrant box add Vagrant_CentOS7 package.box
+vagrant init Vagrant_CentOS7
 vagrant up
-vagrant ssh
 ```
+![8](./screenshots/2020-12-23_125748.jpg)
+
