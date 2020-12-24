@@ -210,5 +210,6 @@ vagrant box add Vagrant_CentOS7 package.box
 vagrant init Vagrant_CentOS7
 vagrant up
 ```
+
 ![8](./screenshots/2020-12-23_125748.jpg)
 
