@@ -2,11 +2,7 @@
 
 4. Lightsale  
 
-![4_1](./screenshots/2020-12-23_123545.jpg)  
-
 ![4_2](./screenshots/2020-12-23_123725.jpg)  
-
-![4_3](./screenshots/2020-12-23_123906.jpg)  
 
 5. EC2-instanse (AWS-Linux)  
 
