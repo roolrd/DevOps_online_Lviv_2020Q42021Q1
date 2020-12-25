@@ -1,5 +1,5 @@
 
-###PART 1  
+### PART 1  
 
 3. Database named COMPANY containes tables: EMPLOYEE, SALARY_GRADE, DEPARTMENT.  
 
@@ -97,7 +97,7 @@ SHOW GRANTS FOR 'toor'@'localhost';
 ![9_1](./screenshots/2020-12-24_235610.jpg)  
 
 
-###PART 2  
+### PART 2  
 
 10. BACKUP   
 sudo mysqldump -uroot -p$pass COMPANY > COMPANY_DB.sql  
@@ -161,7 +161,7 @@ show tables;
 SELECT * FROM EMPLOYEE;
 ```
 
-###PART 3  
+### PART 3  
 
 17. Create AMAZON DYNAMO DB  
 
