@@ -1,6 +1,6 @@
 ### Create a network  
 
-![1](./scr/2020-12-28_225943.jpg)
+![1](./scr/2020-12-31_100126.jpg)
 
 ### Router configuration  
 
