@@ -11,14 +11,14 @@ I have done a network analysis using Traffic Generator and ping-command.
 
 ![1.4](./scr/2020-12-28_225943.jpg)  
 
-###2.  
+### 2.  
 Network model on CiscoPacketTracer, which is located in four-storey building. The network consists of 8 (5 + 3) subnets on the each floor. Subnens have the following IP-addresses 192.168.1.0/24, 192.168.2.0/24...192.168.8.0/24. Switches is connected via gigabit ports.  Hosts on subnets without a router do not have a logical interconnection with hosts on other corporate subnets.
 
 ![2.1](./scr/2020-12-30_160901.jpg)  
 
 ![2.2](./scr/2020-12-30_161516.jpg)  
 
-###3.  
+### 3.  
 The network model consists of 5 subnets (192.168.0.0/24, 192.168.1.0/24...192.168.4.0/24). Each subnet is located in a separate bulding and connected via two routers.  
 
 ![3.1](./scr/2020-12-31_002436.jpg)  
