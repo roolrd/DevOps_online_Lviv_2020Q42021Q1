@@ -2,7 +2,7 @@
 
 ![1](./scr/2020-12-26_230839.jpg)  
 
-5.  
+5. Connection check. The ICMP-packet on the hub is repeated and sent to each host on the network. The packet is accepted only by the host to which it's intended, others ignore it.  
 
 ![5](./scr/2020-12-26_233211.jpg)  
 
@@ -14,7 +14,7 @@
 
 ![7](./scr/2020-12-26_233911.jpg)  
 
-8.  
+8. I get acquainted the movement of the package according to the OSI model  
 
 ![8.1](./scr/2020-12-26_234352.jpg)  
 
@@ -32,7 +32,7 @@
 
 ![9.4](./scr/2020-12-27_203013.jpg)  
 
-12.  У випадку з'єднання комп'ютерів між собою через комутатор, пакети призначені для одного комп'ютера надсилаються лише до нього. На відміну від з'єднання через hub-концентратор, де пакет "копіюється" і надсилається усім в мережі, і вже самі комп'ютери відкидають адресований не їм пакет.  
+12.  In the case of computers connection to each other through a switch, packets intended for one computer are sent only to it.  
 
 ![12.1](./scr/2020-12-27_233810.jpg)  
 
