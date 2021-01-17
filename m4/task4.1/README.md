@@ -10,11 +10,11 @@
 
 ![6](./scr/2020-12-26_233357.jpg)  
 
-7.  
+7. I get acquainted the movement of the package according to the OSI model  
 
 ![7](./scr/2020-12-26_233911.jpg)  
 
-8. I get acquainted the movement of the package according to the OSI model  
+8. 
 
 ![8.1](./scr/2020-12-26_234352.jpg)  
 
@@ -32,7 +32,7 @@
 
 ![9.4](./scr/2020-12-27_203013.jpg)  
 
-12.  In the case of computers connection to each other through a switch, packets intended for one computer are sent only to it.  
+12.  In this case of computers connection to each other through a switch, packets intended for one computer are sent only to it.  
 
 ![12.1](./scr/2020-12-27_233810.jpg)  
 
