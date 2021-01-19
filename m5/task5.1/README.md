@@ -274,17 +274,18 @@ ubuntu@ip-172-31-33-124:/$
 
 ##### 8. Mount partitions  
 ```
-ubuntu@ip-172-31-33-124:/$ lsblk
-NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-xvda    202:0    0    8G  0 disk
-└─xvda1 202:1    0    8G  0 part /
-loop0     7:0    0 97.9M  1 loop /snap/core/10583
-loop1     7:1    0 55.4M  1 loop /snap/core18/1932
-loop2     7:2    0 28.1M  1 loop /snap/amazon-ssm-agent/2333
-loop3     7:3    0 32.3M  1 loop /snap/amazon-ssm-agent/2996
-loop4     7:4    0 97.9M  1 loop /snap/core/10577
-loop5     7:5    0 55.4M  1 loop /snap/core18/1944
+[ruslan@cnt7 ssh]$ df -h
+Filesystem               Size  Used Avail Use% Mounted on
+devtmpfs                 485M     0  485M   0% /dev
+tmpfs                    496M     0  496M   0% /dev/shm
+tmpfs                    496M  6.8M  489M   2% /run
+tmpfs                    496M     0  496M   0% /sys/fs/cgroup
+/dev/mapper/centos-root  6.2G  1.6G  4.7G  26% /
+/dev/sda1               1014M  196M  819M  20% /boot
+tmpfs                    100M     0  100M   0% /run/user/0
+tmpfs                    100M     0  100M   0% /run/user/1000
+```
+</dev/mapper/centos-root>, </dev/sda1> - basic filesystem  
+<devtmpfs>, <tmpfs> - special filesystems  
 
-
-
-
+##### 9. 
