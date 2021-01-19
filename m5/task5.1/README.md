@@ -178,12 +178,13 @@ ubuntu@ip-172-31-33-124:~$ tree -aP '*yml'  --prune
         └── docker-compose.yml
 
 16 directories, 29 files
+```
 
 ubuntu@ip-172-31-33-124:~$ tree -dL 2
-
 ```
 
 ##### 2. What command can be used to determine the type of file  
+
 ```
 [ruslan@cnt7 ~]$ file .plan
 .plan: ASCII text
@@ -193,6 +194,7 @@ file /bin/ls
 ```
 
 ##### 3.  Master the skills of navigating the file system  
+
 ```
 cd /home/ubuntu
 cd $HOME
@@ -203,6 +205,7 @@ cd -
 ```
 
 ##### 4. "ls" - command  
+
 ```
 ubuntu@ip-172-31-33-124:~$ ls
 ansible         EPAM        myDocker  prometheus    tree_result.txt
@@ -254,6 +257,7 @@ Rename symlink and hardlink, remove original file
  After renaming "symb_lnk_labwork2" still works as a symlink its file  "labwork2". After deleting the original file, if we want to open its link, we will receive an error that such a file does not exist, because we really deleted the original file. It only refers to the file name, not its content. A hard link still points to the same section of the disk; this is the main difference between a hard link and a symbolic one. Linux hardlink is a regular file.  
 
 ##### 7. "locate" utility  
+
 ```
 ubuntu@ip-172-31-33-124:/$ sudo updatedb
 ubuntu@ip-172-31-33-124:/$ locate -Ab squid
@@ -273,6 +277,7 @@ ubuntu@ip-172-31-33-124:/$
 ```
 
 ##### 8. Mount partitions  
+
 ```
 [ruslan@cnt7 ssh]$ df -h
 Filesystem               Size  Used Avail Use% Mounted on
