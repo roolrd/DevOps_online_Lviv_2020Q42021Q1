@@ -343,8 +343,8 @@ tmpfs                    496M     0  496M   0% /sys/fs/cgroup
 tmpfs                    100M     0  100M   0% /run/user/0
 tmpfs                    100M     0  100M   0% /run/user/1000
 ```
-/dev/mapper/centos-root, /dev/sda1 - basic filesystem  
-devtmpfs, tmpfs - special filesystems  
+"/dev/mapper/centos-root", "/dev/sda1" - basic filesystem  
+"devtmpfs", "tmpfs" - special filesystems  
 
 #### 9. Count lines  
 
@@ -374,6 +374,7 @@ if [ -x /usr/bin/dircolors ]; then
 ubuntu@ip-172-31-33-124:~$ grep -c color .bashrc
 20
 ```
+
 #### 10. Finding files which name containes "host"  
 
 ```
@@ -404,7 +405,7 @@ sudo find /etc -type f -exec grep -iq "host" {} \; -print
 
  sudo ls -R /etc | grep ss
  
- #command No1 has found 54 lines, command No2 - 74 lines. Why? I have no any idea...
+ #command No1 has found 54 lines, command No2 - 74 lines?...
  ```
  #### 12. Organize a screen-by-screen print of the contents of the /etc directory  
  
