@@ -158,7 +158,7 @@ sudo chown user1:user2 file1.txt
 -rw-rw-r--. 1 user2 ruslan 5 Jan 23 13:32 file1.txt
 ```
 
-- changing of the file owner's - command "chgrp"
+- changing of the file owner's group - command "chgrp"
 ```
 ruslan@cnt7 test]$ ls -l file2.txt
 -rw-rw-r--. 1 ruslan ruslan 6 Jan 23 13:32 file2.txt
@@ -174,4 +174,68 @@ ruslan@cnt7 test]$ ls -l file2.txt
 
 - changing mode access to the file - command "chmod"
 ```
+[ruslan@cnt7 test]$ ls -l file1.txt
+-rw-rw-r--. 1 ruslan ruslan 5 Jan 23 13:32 file1.txt
+
+#rwx for all 
+[ruslan@cnt7 test]$ chmod a+rwx file1.txt
+[ruslan@cnt7 test]$ ls -l file1.txt
+-rwxrwxrwx. 1 ruslan ruslan 5 Jan 23 13:32 file1.txt
+
+[ruslan@cnt7 test]$ chmod ug-x,o-rwx  file1.txt
+[ruslan@cnt7 test]$ ls -l file1.txt
+-rw-rw----. 1 ruslan ruslan 5 Jan 23 13:32 file1.txt
+
+[ruslan@cnt7 test]$ chmod ug-rw  file1.txt
+[ruslan@cnt7 test]$ ls -l file1.txt
+----------. 1 ruslan ruslan 5 Jan 23 13:32 file1.txt
+
+[ruslan@cnt7 test]$ chmod ug+rw  file1.txt
+[ruslan@cnt7 test]$ ls -l file1.txt
+-rw-rw----. 1 ruslan ruslan 5 Jan 23 13:32 file1.txt
+[ruslan@cnt7 test]$ chmod g=o  file1.txt
+[ruslan@cnt7 test]$ ls -l file1.txt
+-rw-------. 1 ruslan ruslan 5 Jan 23 13:32 file1.txt
+```
+
+#### 15. What is an example of octal representation of access rights? Umask.  
+
+4 = r =  read
+2 = w =  write
+1 = x = execute
+rw-rw-r-- - 0664
+rwxrwxrwx - 0777
+--------- - 0000
+rwxr-x--x - 0751
+
+The "umask"-command sets an octal attribute that specifies which permission bits should always be turned off when new files or directories are created by the process.  Shows the current value, if it's used without options and values.  
+
+#### 16. Give definitions of sticky bits and mechanism of identifier substitution  
+
+Setting "sticky bit" on a directory means that an unprivileged
+users can remove or rename files (directories) in the directory only if it has write permission on the directory and owns either the file or the directory. The executable file for which the "sticky bit" is set remains (fixed) in memory after the end of the process.
+```
+drwxrwxrwt. 7 root root 93 Jan 23 14:26 /tmp/
+```
+
+Set User ID (SUID). When a user executes a file, the program runs based on the permissions of the file owner.
+```
+-rwsr-xr-x. 1 root root 27856 Apr  1  2020 /usr/bin/passwd
+```
+
+ Set Group ID (SGID). When applied to a file, the execution of the program is based on the group permissions of the file.
+For a directory, the directory group is used as the default group for new files created in the directory.
+```
+-r-xr-sr-x. 1 root tty 15344 Jun 10  2014 /usr/bin/wall
+drwxr-sr-x. 3 root systemd-journal 60 Jan 23 14:25 /run/log/journal
+[ruslan@cnt7 test]$ ls -l /run/log/journal/68b9dc601af449909715222228ac0f9b/
+total 6344
+-rwxr-x---+ 1 root systemd-journal 6496256 Jan 23 16:34 system.journal
+```
+
+#### 17. What file attributes should be present in the command script?  
+A file that contain command script must have at least the permissions of 0500 (-r-x------) and begin with the #! characters. 
+
+
+
 
