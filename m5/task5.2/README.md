@@ -90,4 +90,47 @@ usermod -s /sbin/nologin
 ```
 
 UNLOCK  
+```
+usermod -U(--unlock) <username>
+or
+passwd -u <username>
+or
+usermod -s /sbin/bash (or another shell)
+```
 
+#### 10. How to remove a user's password?  
+```
+sudo passwd -d <username>
+```
+
+#### 11. Display the extended format of information about the directory
+```
+[ruslan@cnt7 .ssh]$ ls -la
+total 8
+drwx------ 2 ruslan ruslan   38 Jan 23 10:42 .
+drwx------ 3 ruslan ruslan  124 Jan 19 16:47 ..
+-rw------- 1 ruslan ruslan 1675 Jan 23 10:42 id_rsa
+-rw-r--r-- 1 ruslan ruslan  397 Jan 23 10:42 id_rsa.pub
+```
+- "total 8" - total file size on the directory (kB)
+- first symbol "d" or "-" - file type: "d" - directory, "-" - regular file
+- "rwx------" - the permissions granted to the owner of the file(1st triade), users who are members of the owner's group (2nd triade), to everyone else(3rd triade)
+- number of hard links to the file
+- name of the file owner
+- name the file owner's group
+- file size (bytes)
+- date and time of last file access
+- file name. "." - current directory, ".." - parent directory  
+
+#### 12 & 13 What access rights exist and for whom (i. e., describe the main roles)? What is the sequence of defining the relationship between the file and the user?   
+"rwx | rw- | r--"  
+- r - read: the contents of the file may be read
+- w - write: the contents of the file may be changed
+- x - execute: The file may be executed (a program or a script)  
+First triade - the permissions granted to the owner of the file   Second - the permissions granted to users who are members of the owner's group  
+Third - the permissions granted to everyone else  
+There are also 3 additional bits - the set-user-ID (s), set-group-ID(s), and sticky (t) bits
+- s - set-user-id (SUID) - when a user executes a file, the program is run based on the permissions of the file owner. Set-group-ID (SGID) - the execution of the program is based on the group permissions of the file. For a directory, the directory group is used as the default group for new files created in the directory.
+- t - sticky bit makes it possible to create a directory that is shared by many users, who can each create and delete their own files in the directory but can’t delete files owned by other users  
+
+#### 13. 
