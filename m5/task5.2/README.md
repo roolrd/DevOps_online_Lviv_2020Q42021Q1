@@ -234,7 +234,7 @@ total 6344
 ```
 
 #### 17. What file attributes should be present in the command script?  
-A file that contain command script must have at least the permissions of 0500 (-r-x------) and begin with the #! characters. 
+A file that contain command script is required permissions at least 0500 (-r-x------) and begin with the #! characters. 
 
 
 
