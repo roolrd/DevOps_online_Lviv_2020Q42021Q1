@@ -127,10 +127,51 @@ drwx------ 3 ruslan ruslan  124 Jan 19 16:47 ..
 - r - read: the contents of the file may be read
 - w - write: the contents of the file may be changed
 - x - execute: The file may be executed (a program or a script)  
-First triade - the permissions granted to the owner of the file   Second - the permissions granted to users who are members of the owner's group  
-Third - the permissions granted to everyone else  
-There are also 3 additional bits - the set-user-ID (s), set-group-ID(s), and sticky (t) bits
+First triade - the permissions granted to the owner of the file (it's, usually, user who created the file).   Second - the permissions granted to users who are members of the owner's group. 
+Third - the permissions granted to everyone else.  
+
+There are also 3 additional permissions bits - the set-user-ID (s), set-group-ID (s), and sticky (t) bits
 - s - set-user-id (SUID) - when a user executes a file, the program is run based on the permissions of the file owner. Set-group-ID (SGID) - the execution of the program is based on the group permissions of the file. For a directory, the directory group is used as the default group for new files created in the directory.
 - t - sticky bit makes it possible to create a directory that is shared by many users, who can each create and delete their own files in the directory but can’t delete files owned by other users  
 
-#### 13. 
+#### 14. What commands are used to change the owner of a file (directory), as well as the mode of access to the file?  
+
+- changing of the file owner (and file owner's group) - command "chown"
+```
+[ruslan@cnt7 test]$ ls -l file1.txt
+-rw-rw-r--. 1 ruslan ruslan 5 Jan 23 13:32 file1.txt
+
+[ruslan@cnt7 test]$ sudo chown user2 file1.txt
+[ruslan@cnt7 test]$ ls -l file1.txt
+-rw-rw-r--. 1 user2 ruslan 5 Jan 23 13:32 file1.txt
+
+#change both owner and group
+[ruslan@cnt7 test]$ sudo chown user1.user2 file1.txt
+#or
+sudo chown user1:user2 file1.txt
+[ruslan@cnt7 test]$ ls -l file1.txt
+-rw-rw-r--. 1 user2 user1 5 Jan 23 13:32 file1.txt
+
+#change group only
+[ruslan@cnt7 test]$ sudo chown :ruslan file1.txt
+[ruslan@cnt7 test]$ ls -l file1.txt
+-rw-rw-r--. 1 user2 ruslan 5 Jan 23 13:32 file1.txt
+```
+
+- changing of the file owner's - command "chgrp"
+```
+ruslan@cnt7 test]$ ls -l file2.txt
+-rw-rw-r--. 1 ruslan ruslan 6 Jan 23 13:32 file2.txt
+
+[ruslan@cnt7 test]$ chgrp wheel file2.txt
+[ruslan@cnt7 test]$ ls -l file2.txt
+-rw-rw-r--. 1 ruslan wheel 6 Jan 23 13:32 file2.txt
+
+[ruslan@cnt7 test]$ sudo chgrp user1 file2.txt
+[ruslan@cnt7 test]$ ls -l file2.txt
+-rw-rw-r--. 1 ruslan user1 6 Jan 23 13:32 file2.txt
+```
+
+- changing mode access to the file - command "chmod"
+```
+
