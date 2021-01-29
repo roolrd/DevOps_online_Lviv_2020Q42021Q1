@@ -101,7 +101,7 @@ The kernel creates a process tree with two main branches: a process with PID(pro
 #### 7. Print the list of processes to the terminal. Briefly describe the statuses of the processes.  
 ```
 ubuntu@ip-172-31-33-124:~$ ps aux
-USER       PID %CPU %MEM    VSZ   RSS TTY  ** STAT START   TIME COMMAND
+USER       PID %CPU %MEM    VSZ   RSS TTY ##### STAT START   TIME COMMAND
 root         1  0.0  0.5  37764  5188 ?        Ss   Jan22   0:05 /sbin/init
 root         2  0.0  0.0      0     0 ?        S    Jan22   0:00 [kthreadd]
 root         3  0.0  0.0      0     0 ?        S    Jan22   0:01 [ksoftirqd/0]
@@ -127,5 +127,6 @@ root     26128  0.0  0.0      0     0 ?        S    Jan28   0:00 [kworker/u30:2]
 root     30670  0.0  0.0      0     0 ?        S<   Jan28   0:00 [xfsalloc]
 root     30671  0.0  0.0      0     0 ?        S<   Jan28   0:00 [xfs_mru_cache]
 ```
-
+Statuses ##### STAT
+S - sleeping
 
