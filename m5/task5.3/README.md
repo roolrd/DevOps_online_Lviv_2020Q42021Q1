@@ -101,7 +101,7 @@ The kernel creates a process tree with two main branches: a process with PID(pro
 #### 7. Print the list of processes to the terminal. Briefly describe the statuses of the processes.  
 ```
 ubuntu@ip-172-31-33-124:~$ ps aux
-USER       PID %CPU %MEM    VSZ   RSS TTY ##### STAT START   TIME COMMAND
+USER       PID %CPU %MEM    VSZ   RSS TTY     STAT START   TIME COMMAND
 root         1  0.0  0.5  37764  5188 ?        Ss   Jan22   0:05 /sbin/init
 root         2  0.0  0.0      0     0 ?        S    Jan22   0:00 [kthreadd]
 root         3  0.0  0.0      0     0 ?        S    Jan22   0:01 [ksoftirqd/0]
@@ -127,6 +127,54 @@ root     26128  0.0  0.0      0     0 ?        S    Jan28   0:00 [kworker/u30:2]
 root     30670  0.0  0.0      0     0 ?        S<   Jan28   0:00 [xfsalloc]
 root     30671  0.0  0.0      0     0 ?        S<   Jan28   0:00 [xfs_mru_cache]
 ```
-Statuses ##### STAT
-S - sleeping
+Statuses (STAT)  
+- S - process is sleeping
+- R - process that is running or in the queue
+- s - process is the session leader
+- < - process has high priority
+- N - process has low priority
+- L - some pages are locked in memory
+- + - process group in the background
+- l - multi-threading process  
+
+#### 8. Display only the processes of a specific user  
+List of "ubuntu"-user processes  
+```
+ubuntu@ip-172-31-33-124:~$ ps -fu ubuntu
+UID        PID  PPID  C STIME TTY          TIME CMD
+ubuntu    6518     1  0 13:28 ?        00:00:00 /lib/systemd/systemd --user
+ubuntu    6521  6518  0 13:28 ?        00:00:00 (sd-pam)
+ubuntu    6703  6516  0 13:28 ?        00:00:00 sshd: ubuntu@notty
+ubuntu    6704  6514  0 13:28 ?        00:00:00 sshd: ubuntu@pts/0
+ubuntu    6709  6703  0 13:28 ?        00:00:00 /usr/lib/openssh/sftp-server
+ubuntu    6711  6704  0 13:28 pts/0    00:00:00 -bash
+ubuntu   11295  6711  0 16:41 pts/0    00:00:00 ps -fu ubuntu
+```
+
+#### 9. What utilities can be used to analyze existing running tasks (by analyzing the help for the ps command)?  
+- "pgrep" utility was created to removing the need to call grep with ps.  
+```
+ubuntu@ip-172-31-33-124:~$ pgrep docker -l
+1227 dockerd
+1502 docker-containe
+1551 docker-containe
+1572 docker-volume-s
+```
+- "pkill" - command pkill is similar to pgrep in that it can search by name and will send the specified signal (by default SIGTERM) to each process.  
+```
+ubuntu@ip-172-31-33-124:~$ sudo pkill docker
+ubuntu@ip-172-31-33-124:~$ pgrep docker -l
+ubuntu@ip-172-31-33-124:~$
+```
+- pidof. This command will check the PID of a specific binary even if another process with the same name is running  
+
+#### 10. What information does top command display?  
+The top command is using for real-time viewing details of running processes and quickly identifying issues with memory, CPU, etc.  
+
+#### 11. Display the processes of the specific user using the top command  
+
+[1.11](./scr/2021-01-![2021-01-31_213141.jpg)  
+
+
+
 
