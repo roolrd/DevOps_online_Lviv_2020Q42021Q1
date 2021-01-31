@@ -173,7 +173,7 @@ The top command is using for real-time viewing details of running processes and 
 
 #### 11. Display the processes of the specific user using the top command  
 
-[1.11](./scr/2021-01-![2021-01-31_213141.jpg)  
+![1.11](./scr/2021-01-![2021-01-31_213141.jpg)  
 
 
 
