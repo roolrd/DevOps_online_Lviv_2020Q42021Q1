@@ -386,7 +386,45 @@ sleep 5000
 
 ### Part2  
 
+#### 1. Check the implementability of the most frequently used OPENSSH commands in the MS Windows operating system  
 
+Consider installing OpenSSH on Windows-7. 
+I'll use manuals http://fred151.net/site/2018/09/23/how-to-install-openssh-on-windows-7-10/ and https://github.com/PowerShell/Win32-OpenSSH/wiki/Install-Win32-OpenSSH  
+1.1 Download the latest (https://github.com/PowerShell/Win32-OpenSSH/releases/latest) build of OpenSSH - v8.1.0.0p1-Beta.
+1.2 Extract contents of the latest build to C:\Program Files\OpenSSH
+1.3 Download PsTools (official useful tools from Microsoft https://docs.microsoft.com/en-us/sysinternals/downloads/pstools). Copy the content of the folder PSTools under “C:\Windows\System32\”. Open the cmd as administrator and run C:\Windows\System32\psexec64.exe, accept the eula license.
+1.4 In an elevated Powershell console, run the following
+```
+powershell.exe -ExecutionPolicy Bypass -File install-sshd.ps1
+```
+1.5 Allow incoming connections to SSH server in Windows Firewall:
+– Either run the following PowerShell command (Windows 8 and 2012 or newer only), as the Administrator:
+```
+New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
+```
+– or go to Control Panel > System and Security > Windows Firewall> Advanced Settings > Inbound Rules and add a new rule for port 22.
+1.6 Create the C:\Users\admin\.ssh folder 
+1.7 Create the file “authorized_keys” under ~./.ssh
+1.8 Run the scrips to fix/check correct permission a PowerShell with administrator privilege
+```
+> powershell.exe -ExecutionPolicy Bypass -File FixHostFilePermissions.ps1 > powershell.exe -ExecutionPolicy Bypass -File FixUserFilePermissions.ps1
+```
+1.9 Personalize your SSH server settings editing the configuration file %PROGRAMDATA%\ssh\sshd_config
+1.10 Start sshd (this will automatically generate host keys under %programdata%\ssh if they don't already exist)
+```
+net start sshd
+```
+1.11 run ./ssh-keygen.exe to create private and puplic keys  
+![2.11.1](./scr/2021-02-02_171019.jpg)  
+
+![2.11.2](./scr/2021-02-02_171424.jpg)  
+
+1.12 Copy the private and public key on the ~.ssh folder of the user that you want use on the server.Run ssh-add.exe to add you private and public key to the ssh-agent.
+Note: ensure that ssh-agent is running.
+```
+./ssh-add.exe
+```
+1.13 
 
 
 
