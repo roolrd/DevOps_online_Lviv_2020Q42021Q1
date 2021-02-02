@@ -1,8 +1,10 @@
-### Task 5.3  
+## Task 5.3  
+
+### Part1  
 
 #### 1. How many states could has a process in Linux?  
 
-Basically, there are Five main process states - Running (R), Interruptible sleep (S) - process is waiting for some event, Stop (T) - process is stopped, Zombie (Z) - state between (exit) and (wait) , Uninterruptible sleep (D) - process is waiting for fo input-output after it's requested somewhere.  
+Basically, there are Five main process states - Running (R), Interruptible sleep (S) - process is waiting for some event, Stop (T) - process is stopped, Zombie (Z) - state between (exit) and (wait) , Uninterruptible sleep (D) - process is waiting for input-output after it's requested somewhere.  
 
 #### 2. Examine the pstree command.  
 ```
@@ -174,6 +176,225 @@ The top command is using for real-time viewing details of running processes and 
 #### 11. Display the processes of the specific user using the top command  
 
 ![1.11](./scr/2021-01-31_213141.jpg)  
+
+#### 12. What interactive commands can be used to control the top command?  
+
+We can see help menu for interactive commands when press "h"or "?"  
+
+![1.12.1](./scr/2021-02-01_160336.jpg)  
+
+- Toggle alternate display mode. We need to press "A" key to display four windows, each displaying a field group: Def: sorted by %CPU, Job: sorted by PID, Mem: sorted by %MEM, Usr: sorted by User field. With g command, we can enter a number to select the current window.  
+
+![1.12.2](./scr/2021-02-01_161606.jpg)  
+
+- l, t and m keys will toggle load average, task/cpu status and mem info respectively as discussed in Uptime and Load Average, CPU State and Memory Usage.  
+
+![1.12.3](./scr/2021-02-01_162825.jpg)  
+
+![1.12.4](./scr/2021-02-01_162951.jpg)  
+
+- F key used to choose what field we want to display on the output screen.  
+
+![1.12.5](./scr/2021-02-01_163324.jpg)  
+
+- c displays the full command path along with the command line arguments in the COMMAND column  
+
+![1.12.6](./scr/2021-02-01_163500.jpg)  
+
+#### 13. 
+By default "top" sorts processes by CPU loading. We can use <Shift>+<N> — to sort by PID, <Shift>+<P> — sort by CPU usage, <Shift>+<M> — sort by Memory usage, <Shift>+<T> — sort by Time usage.
+Also we can use  SHIFT+> and SHIFT+< to sort descending by CPU loading, memory, PID, etc.  
+
+We can see which process load CPU mostly   
+![1.13](./scr/2021-02-01_164636.jpg)  
+
+#### 14.  Concept of priority, what commands are used to set priority  
+
+Processes can have such range of priority on linux - from -20 to 19. Priority "-20" means that tasks with this value will be executed first of all. And tasks with priority "19" will be executed with minimal resources.  
+We can define the priority of process that is going to run using command "nice".  
+```
+ubuntu@ip-172-31-33-124:~$ nice -n 15 sleep 500 &
+[1] 16766
+ubuntu@ip-172-31-33-124:~$ ps -eo pid,user,nice,comm | grep sleep
+16766 ubuntu    15 sleep
+ubuntu@ip-172-31-33-124:~$ nice -n -15 sleep 5000 &
+[2] 16829
+ubuntu@ip-172-31-33-124:~$ nice: cannot set niceness: Permission denied
+^C
+ubuntu@ip-172-31-33-124:~$ sudo !!
+sudo nice -n -15 sleep 5000 &
+[3] 16843
+ubuntu@ip-172-31-33-124:~$ ps -eo pid,user,nice,comm | grep sleep
+16766 ubuntu    15 sleep
+16829 ubuntu     0 sleep
+16844 root     -15 sleep
+# if we want to set priority higher than system sets as default - "0", we need  root-privileges
+# if we want to reset priority of running process, we need to call "renice"-command
+ubuntu@ip-172-31-33-124:~$ nice -n 15 sleep 50000 &
+[5] 17074
+ubuntu@ip-172-31-33-124:~$ sudo renice 5 -p 17074
+17074 (process ID) old priority 15, new priority 5
+ubuntu@ip-172-31-33-124:~$ ps -eo pid,user,nice,comm | grep sleep
+16829 ubuntu     0 sleep
+16844 root     -15 sleep
+17066 ubuntu     0 sleep
+17074 ubuntu     5 sleep
+# or for specific user
+ubuntu@ip-172-31-33-124:~$ sudo renice 15 -u mysql
+114 (user ID) old priority 0, new priority 15
+```
+
+#### 15. Can I change the priority of a process using the top command? If so, how?  
+
+The "r" option of the "top" is used to change the priority of the process. Is the similar of the "renice"-command. In our case we press "sudo top" ->  "r" -> [PID] -> [new value of priority].  
+
+![1.12.6](./scr/2021-02-01_181421.jpg)  
+
+![1.12.6](./scr/2021-02-01_181535.jpg)  
+
+#### 16. Examine the kill command  
+"kill" sends termination(stop) signal to process. The most commonly used signal is "terminate": (SIGTERM) - "soft" form of stopping is default when we call that command or "kill -15", (SIGKILL) - "hard" unconditional stopping - "kill -9". There are other subkinds of "kill", for example kill -2(SIGINT - interrupt) the same as Ctrl+C.  
+```
+ubuntu@ip-172-31-33-124:~$ kill -l
+ 1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP
+ 6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL     10) SIGUSR1
+11) SIGSEGV     12) SIGUSR2     13) SIGPIPE     14) SIGALRM     15) SIGTERM
+16) SIGSTKFLT   17) SIGCHLD     18) SIGCONT     19) SIGSTOP     20) SIGTSTP
+21) SIGTTIN     22) SIGTTOU     23) SIGURG      24) SIGXCPU     25) SIGXFSZ
+26) SIGVTALRM   27) SIGPROF     28) SIGWINCH    29) SIGIO       30) SIGPWR
+31) SIGSYS      34) SIGRTMIN    35) SIGRTMIN+1  36) SIGRTMIN+2  37) SIGRTMIN+3
+38) SIGRTMIN+4  39) SIGRTMIN+5  40) SIGRTMIN+6  41) SIGRTMIN+7  42) SIGRTMIN+8
+43) SIGRTMIN+9  44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13
+48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13 52) SIGRTMAX-12
+53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7
+58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2
+63) SIGRTMAX-1  64) SIGRTMAX
+
+#kill -15 [PID]
+#for example
+ubuntu@ip-172-31-33-124:~$ sleep 9000 &
+[1] 3240
+ubuntu@ip-172-31-33-124:~$ kill -9 3240
+ubuntu@ip-172-31-33-124:~$ sleep 9000 &
+[2] 3260
+[1]   Killed                  sleep 9000
+
+ubuntu@ip-172-31-33-124:~$ dd if=/dev/zero of=/dev/null &
+[3] 3325
+ubuntu@ip-172-31-33-124:~$ dd if=/dev/zero of=/dev/null &
+[4] 3370
+ubuntu@ip-172-31-33-124:~$ dd if=/dev/zero of=/dev/null &
+[5] 3371
+ubuntu@ip-172-31-33-124:~$ ps aux | grep dd
+root         2  0.0  0.0      0     0 ?        S    Jan22   0:00 [kthreadd]
+root        84  0.0  0.0      0     0 ?        S<   Jan22   0:00 [ipv6_addrconf]
+root       388  0.0  0.0      0     0 ?        S<   Jan22   0:00 [ib_addr]
+message+  1257  0.0  0.2  42884  2944 ?        Ss   Jan22   0:00 /usr/bin/dbus-daemon --system --ad ress=systemd: --nofork --nopidfile --systemd-activation
+ubuntu    3325 97.8  0.0   6044   840 pts/0    R    05:36   2:37 dd if=/dev/zero of=/dev/null
+ubuntu    3370 37.0  0.0   6044   692 pts/0    R    05:38   0:01 dd if=/dev/zero of=/dev/null
+ubuntu    3371 35.0  0.0   6044   740 pts/0    R    05:38   0:00 dd if=/dev/zero of=/dev/null
+ubuntu    3373  0.0  0.0  12940  1012 pts/0    S+   05:39   0:00 grep --color=auto dd
+ubuntu@ip-172-31-33-124:~$ ps fax | grep -B5 dd
+  PID TTY      STAT   TIME COMMAND
+    2 ?        S      0:00 [kthreadd]
+--
+   75 ?        S      0:00  \_ [scsi_eh_0]
+   76 ?        S<     0:00  \_ [scsi_tmf_0]
+   77 ?        S      0:00  \_ [scsi_eh_1]
+   78 ?        S<     0:00  \_ [scsi_tmf_1]
+   80 ?        S<     0:00  \_ [bioset]
+   84 ?        S<     0:00  \_ [ipv6_addrconf]
+--
+  280 ?        S<     0:00  \_ [bioset]
+  301 ?        S      0:01  \_ [jbd2/xvda1-8]
+  302 ?        S<     0:00  \_ [ext4-rsv-conver]
+  362 ?        S<     0:00  \_ [kworker/0:1H]
+  381 ?        S<     0:00  \_ [iscsi_eh]
+  388 ?        S<     0:00  \_ [ib_addr]
+--
+ 1220 ?        S<Ls   1:32 /sbin/iscsid
+ 1231 ?        Ss     0:00 /usr/sbin/atd -f
+ 1236 ?        Ssl    0:02 /usr/sbin/rsyslogd -n
+ 1237 ?        Ssl    0:04 /usr/bin/lxcfs /var/lib/lxcfs/
+ 1247 ?        Ssl    0:00 /usr/local/bin/node_exporter
+ 1257 ?        Ss     0:00 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation
+--
+ 1375 ?        Ss     0:04 /usr/sbin/sshd -D
+ 2721 ?        Ss     0:00  \_ sshd: ubuntu [priv]
+ 2885 ?        S      0:00  |   \_ sshd: ubuntu@pts/0
+ 2910 pts/0    Ss     0:00  |       \_ -bash
+ 3260 pts/0    S      0:00  |           \_ sleep 9000
+ 3325 pts/0    R      3:10  |           \_ dd if=/dev/zero of=/dev/null
+ 3370 pts/0    R      0:34  |           \_ dd if=/dev/zero of=/dev/null
+ 3371 pts/0    R      0:33  |           \_ dd if=/dev/zero of=/dev/null
+ 3402 pts/0    R+     0:00  |           \_ ps fax
+ubuntu@ip-172-31-33-124:~$ kill -9 2910
+```
+
+#### 17. Commands jobs, fg, bg, nohup  
+
+- "jobs" - shows us information about commands which is running on the current session (terminal) as usually on the background.
+- "nohup" - allows continue to run processes after log out or closing our terminal (parent process).
+- "fg" - returns process from the background to active terminal.
+- "bg" - sends processes to background.
+```
+[ruslan@cnt7 ~]$ sleep 5000 &
+[1] 1731
+[ruslan@cnt7 ~]$ sleep 6000 &
+[2] 1732
+[ruslan@cnt7 ~]$ yes > /dev/null 2>&1 &
+[3] 1733
+[ruslan@cnt7 ~]$ jobs
+[1]   Running                 sleep 5000 &
+[2]-  Running                 sleep 6000 &
+[3]+  Running                 yes > /dev/null 2>&1 &
+[ruslan@cnt7 ~]$ ps aux | tail
+ruslan    1703  0.0  0.0 108056   352 ?        S    23:19   0:00 sleep 6000
+root      1705  0.0  0.2  96572  2452 ?        Ss   23:20   0:00 login -- ruslan
+ruslan    1710  0.0  0.2 115548  2032 tty1     Ss+  23:20   0:00 -bash
+ruslan    1731  0.0  0.0 108056   356 pts/1    S    23:21   0:00 sleep 5000
+ruslan    1732  0.0  0.0 108056   356 pts/1    S    23:21   0:00 sleep 6000
+ruslan    1733 99.9  0.0 108060   352 pts/1    R    23:22   6:57 yes
+root      1736  0.0  0.0      0     0 ?        S    23:27   0:00 [kworker/1:0]
+ruslan    1741 82.8  0.0 108060   356 tty1     S    23:27   1:08 yes
+ruslan    1742  0.0  0.1 155452  1800 pts/1    R+   23:29   0:00 ps aux
+ruslan    1743  0.0  0.0 115548   632 pts/1    R+   23:29   0:00 -bash
+[ruslan@cnt7 ~]$ kill 1733
+[ruslan@cnt7 ~]$ yes > /dev/null 2>&1 &
+[4] 1746
+[3]   Terminated              yes > /dev/null 2>&1
+[ruslan@cnt7 ~]$ jobs
+[1]   Running                 sleep 5000 &
+[2]-  Running                 sleep 6000 &
+[4]+  Running                 yes > /dev/null 2>&1 &
+[ruslan@cnt7 ~]$ fg %1
+sleep 5000
+^Z
+[1]+  Stopped                 sleep 5000
+[ruslan@cnt7 ~]$ bg %1
+[1]+ sleep 5000 &
+[ruslan@cnt7 ~]$ jobs
+[1]   Running                 sleep 5000 &
+[2]-  Running                 sleep 6000 &
+[4]+  Running                 yes > /dev/null 2>&1 &
+[ruslan@cnt7 ~]$ kill %2
+[ruslan@cnt7 ~]$ jobs
+[1]   Running                 sleep 5000 &
+[2]-  Terminated              sleep 6000
+[4]+  Running                 yes > /dev/null 2>&1 &
+```
+
+
+
+
+ 
+
+    
+
+
+
+
+
 
 
 
