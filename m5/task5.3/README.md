@@ -334,7 +334,7 @@ ubuntu@ip-172-31-33-124:~$ kill -9 2910
 #### 17. Commands jobs, fg, bg, nohup  
 
 - "jobs" - shows us information about commands which is running on the current session (terminal) as usually on the background.
-- "nohup" - allows continue to run processes after log out or closing our terminal (parent process).
+- "nohup" - theoretical allows continue processes after log out or closing our terminal.
 - "fg" - returns process from the background to active terminal.
 - "bg" - sends processes to background.
 ```
