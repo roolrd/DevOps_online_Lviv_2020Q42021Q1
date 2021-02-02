@@ -202,7 +202,7 @@ We can see help menu for interactive commands when press "h"or "?"
 ![1.12.6](./scr/2021-02-01_163500.jpg)  
 
 #### 13. 
-By default "top" sorts processes by CPU loading. We can use <Shift>+<N> — to sort by PID, <Shift>+<P> — sort by CPU usage, <Shift>+<M> — sort by Memory usage, <Shift>+<T> — sort by Time usage.
+By default "top" sorts processes by CPU loading. We can use Shift+N — to sort by PID, Shift+P— sort by CPU usage, Shift+M — sort by Memory usage, Shift+T — sort by Time usage.
 Also we can use  SHIFT+> and SHIFT+< to sort descending by CPU loading, memory, PID, etc.  
 
 We can see which process load CPU mostly   
@@ -383,6 +383,9 @@ sleep 5000
 [2]-  Terminated              sleep 6000
 [4]+  Running                 yes > /dev/null 2>&1 &
 ```
+
+### Part2  
+
 
 
 
