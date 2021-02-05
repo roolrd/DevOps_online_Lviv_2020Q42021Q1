@@ -392,39 +392,135 @@ Consider installing OpenSSH on Windows-7.
 I'll use manuals http://fred151.net/site/2018/09/23/how-to-install-openssh-on-windows-7-10/ and https://github.com/PowerShell/Win32-OpenSSH/wiki/Install-Win32-OpenSSH  
 1.1 Download the latest (https://github.com/PowerShell/Win32-OpenSSH/releases/latest) build of OpenSSH - v8.1.0.0p1-Beta.
 1.2 Extract contents of the latest build to C:\Program Files\OpenSSH
-1.3 Download PsTools (official useful tools from Microsoft https://docs.microsoft.com/en-us/sysinternals/downloads/pstools). Copy the content of the folder PSTools under “C:\Windows\System32\”. Open the cmd as administrator and run C:\Windows\System32\psexec64.exe, accept the eula license.
-1.4 In an elevated Powershell console, run the following
+1.3 In an elevated Powershell console, run the following
 ```
 powershell.exe -ExecutionPolicy Bypass -File install-sshd.ps1
 ```
-1.5 Allow incoming connections to SSH server in Windows Firewall:
+1.4 Allow incoming connections to SSH server in Windows Firewall:
 – Either run the following PowerShell command (Windows 8 and 2012 or newer only), as the Administrator:
 ```
 New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
 ```
 – or go to Control Panel > System and Security > Windows Firewall> Advanced Settings > Inbound Rules and add a new rule for port 22.
-1.6 Create the C:\Users\admin\.ssh folder 
-1.7 Create the file “authorized_keys” under ~./.ssh
-1.8 Run the scrips to fix/check correct permission a PowerShell with administrator privilege
+1.5 Create the C:\Users\admin\.ssh folder 
+1.6 Create the file “authorized_keys” under ~./.ssh
+1.7 Run the scrips to fix/check correct permission a PowerShell with administrator privilege
 ```
 > powershell.exe -ExecutionPolicy Bypass -File FixHostFilePermissions.ps1 > powershell.exe -ExecutionPolicy Bypass -File FixUserFilePermissions.ps1
 ```
-1.9 Personalize your SSH server settings editing the configuration file %PROGRAMDATA%\ssh\sshd_config
-1.10 Start sshd (this will automatically generate host keys under %programdata%\ssh if they don't already exist)
+1.8 Personalize your SSH server settings editing the configuration file %PROGRAMDATA%\ssh\sshd_config
+1.9 Start sshd (this will automatically generate host keys under %programdata%\ssh if they don't already exist)
 ```
 net start sshd
 ```
-1.11 run ./ssh-keygen.exe to create private and puplic keys  
-![2.11.1](./scr/2021-02-02_171019.jpg)  
+1.10 run ./ssh-keygen.exe to create private and puplic keys  
 
-![2.11.2](./scr/2021-02-02_171424.jpg)  
+![2.10.1](./scr/2021-02-02_171019.jpg)  
 
-1.12 Copy the private and public key on the ~.ssh folder of the user that you want use on the server.Run ssh-add.exe to add you private and public key to the ssh-agent.
-Note: ensure that ssh-agent is running.
+![2.10.2](./scr/2021-02-02_171424.jpg)  
+
+
+1.11 Connect to "remote" VirtualBox-machine ub2004_riznyk (Ubuntu20.04) with password auth.    
+
+![2.11.1](./scr/2021-02-02_183327.jpg)  
+
+1.12 Copy ssh pulic key into remote server, then set "PasswordAuthentication no" on C:\ProgramData\ssh\sshd_config, etc..., restart OpenSSH. Command "ssh-copy-id" doesn't work.  
 ```
-./ssh-add.exe
+type C:\Users\admin\.ssh\id_rsa.pub | ssh riznyk@192.168.0.186 "cat >> /home/riznyk/.ssh/authorized_keys"
 ```
-1.13 
+![2.12.1](./scr/2021-02-02_185838.jpg)  
+
+1.13 Using "scp"-command  
+```
+./scp C:\Users\admin\output.txt riznyk@192.168.0.186:/home/riznyk/
+```
+
+![2.12.1](./scr/2021-02-02_192850.jpg)  
+
+#### 2. Implement basic SSH settings to increase the security of the client-server connection  
+```
+#Open sshd configuration file:
+$ sudo nano /etc/ssh/sshd_config
+
+#unkomment necessary lines
+
+#Disable root user login
+...................
+PermitRootLogin no
+ChallengeResponseAuthentication no
+PasswordAuthentication no
+UsePAM no
+
+#Disable password based login
+.....................
+AuthenticationMethods publickey
+PubkeyAuthentication yes
+
+#Limit Users’ ssh access
+.......................
+AllowUsers ruslan riznyk
+
+#Disable Empty Passwords
+..................
+PermitEmptyPasswords no
+
+#Change SSH Port and limit IP
+.............................
+Port 58982 #won't work if we'd like to connect to github 
+ListenAddress 192.168.0.163
+ListenAddress 192.168.0.188
+
+#Set more secure SSH2 protocol
+Protocol 2
+
+#set directory where server has to look for publickey
+AuthorizedKeysFile %h/.ssh/authorized_keys
+
+restart sshd service
+```
+$ sudo systemctl restart sshd
+```
+#Use strong passwords and passphrase for ssh users/keys (not recommend when we are going to use system of remote control such as Ansible)  
+
+#### 3. List the options for choosing keys for encryption in SSH
+- "rsa" - (named from Rivest, Shamir and Adleman) oid algorithm based on the difficulty of factoring large numbers.
+- "dsa" - an old US government Digital Signature Algorithm. It is based on the difficulty of computing discrete logarithms.
+- ecdsa - a new Digital Signature Algorithm standarized by the US government, using elliptic curves.
+- ed25519 - it is a variant of the ECDSA algorithm but it solves the random number generator problem and uses a "nothing up my sleeve" curve.  
+
+![2.3.1](./scr/2021-02-04_173252.jpg)  
+
+![2.3.2](./scr/2021-02-04_173440.jpg)  
+
+![2.3.3](./scr/2021-02-04_173624.jpg)  
+
+![2.3.4](./scr/2021-02-04_175200.jpg)  
+
+![2.3.5](./scr/2021-02-04_175316.jpg)  
+
+![2.3.6](./scr/2021-02-04_175421.jpg)  
+
+![2.3.7](./scr/2021-02-04_180455.jpg)  
+
+![2.3.8](./scr/2021-02-04_180611.jpg)  
+
+![2.3.9](./scr/2021-02-04_180702.jpg)  
+
+#### 4.  Implement port forwarding for the SSH client from the host machine to the guest Linux virtual machine behind NAT.  
+
+Connect via Windows OpenSSH:
+
+![2.4.1](./scr/2021-02-05_152050.jpg)  
+
+![2.4.2](./scr/2021-02-05_135434.jpg)  
+
+![2.4.3](./scr/2021-02-05_135845.jpg)
+
+
+
+
+
+
 
 
 
