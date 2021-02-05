@@ -441,7 +441,7 @@ type C:\Users\admin\.ssh\id_rsa.pub | ssh riznyk@192.168.0.186 "cat >> /home/riz
 ```
 #Open sshd configuration file:
 $ sudo nano /etc/ssh/sshd_config
-
+```
 #unkomment necessary lines
 
 #Disable root user login
