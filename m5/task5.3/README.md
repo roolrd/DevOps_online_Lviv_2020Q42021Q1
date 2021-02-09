@@ -514,7 +514,36 @@ Connect via Windows OpenSSH:
 
 ![2.4.2](./scr/2021-02-05_135434.jpg)  
 
-![2.4.3](./scr/2021-02-05_135845.jpg)
+![2.4.3](./scr/2021-02-05_135845.jpg)  
+
+#### 5. Intercept (capture) traffic (tcpdump, wireshark) while authorizing the remote client on the server using ssh, telnet.  
+
+Remote connection using "ssh" is more securely than "telnet" and "rlogin" (all information, including passwords, is transmitted unencrypted (making it open to interception)). I'm going to explore security of theese protocols using "tcpdump"-utility, and then consider gathered data using program "Wireshark".  
+ 
+- SSH-connection  
+
+![2.5.1](./scr/2021-02-09_142629.jpg)  
+
+![2.5.2](./scr/2021-02-09_142717.jpg)  
+
+![2.5.3](./scr/2021-02-09_143016.jpg)  
+
+- TELNET-connection
+
+![2.5.1](./scr/2021-02-09_154628.jpg)  
+
+![2.5.2](./scr/2021-02-09_154705.jpg)  
+
+![2.5.3](./scr/2021-02-09_154746.jpg)  
+
+- RLOGIN-connection
+
+![2.5.1](./scr/2021-02-09_163824.jpg)  
+
+![2.5.2](./scr/2021-02-09_163849.jpg)  
+
+![2.5.3](./scr/2021-02-09_164033.jpg)  
+ 
 
 
 
