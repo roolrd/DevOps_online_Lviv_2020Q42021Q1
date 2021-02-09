@@ -542,7 +542,7 @@ Remote connection using "ssh" is more securely than "telnet" and "rlogin" (all i
 
 ![2.5.2](./scr/2021-02-09_163849.jpg)  
 
-![2.5.3](./scr/2021-02-09_164033.jpg)  
+![2.5.3](./scr/2021-02-09_164033.jpg)
  
 
 
