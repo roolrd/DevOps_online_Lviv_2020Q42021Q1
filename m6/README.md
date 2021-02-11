@@ -74,6 +74,12 @@ apt-get install iptables-persistent
 
 Host-machine has IP - 192.168.0.163  
 
+![6.9](./scr/2021-02-11_180145.jpg)  
+
+Using "mtr"
+
+![6.10](./scr/2021-02-11_180052.jpg)  
+
 ![6.9](./scr/2021-02-11_132842_1.jpg)  
 
 ![6.10](./scr/2021-02-11_132842_2.jpg)  
