@@ -1,6 +1,7 @@
-## Task 
+## Task. Linux administration with bash.  
 
-===========================================
-Jenkins 
-SSH Build Agents. This plugin is formerly known as "SSH Slaves Plugin". It was renamed in 1.32.0, but the plugin ID was retained as ssh-slaves to retain compatibility for the plugin users.
-Перевірити чи може запускатись білд на мастері якщо не вказати лейбли
+#### 
+
+
+
+иногда sed не работает со слешами поэтому можно юзать что-то типа sed -i "s~$IPMASK~$elkserviceip
