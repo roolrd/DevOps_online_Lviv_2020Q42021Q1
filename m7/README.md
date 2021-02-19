@@ -56,7 +56,7 @@ ubuntu@ip-172-31-33-124:~/EPAM/Univer$ ./7a --all
 ===============================================================
 hosts IP adress          symbolic name
 ---------------------------------------
-172.31.32.1				(ip-172-31-32-1.eu-central-1.compute.internal)
+172.31.32.1			(ip-172-31-32-1.eu-central-1.compute.internal)
 172.31.37.151			(ip-172-31-37-151.eu-central-1.compute.internal)
 172.31.42.101 			(ip-172-31-42-101.eu-central-1.compute.internal)
 172.31.33.124			(ip-172-31-33-124.eu-central-1.compute.internal)
