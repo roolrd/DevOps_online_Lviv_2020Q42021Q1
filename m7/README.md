@@ -131,7 +131,7 @@ read line1
 echo $line1
 ```
 
-![7.a.1](./scr/2021-02-18_132615.jpg)  
+![7.b.1](./scr/2021-02-18_132615.jpg)  
 
 ##### 2. What is the most requested page?  
 
@@ -146,7 +146,7 @@ read line2
 echo $line2
 ```
 
-![7.a.2](./scr/2021-02-18_145217.jpg)  
+![7.b.2](./scr/2021-02-18_145217.jpg)  
 
 ##### 3. How many requests were there from each ip?  
 
@@ -154,7 +154,7 @@ echo $line2
 less /home/ubuntu/EPAM/Univer/tmp/out_script1
 ```
 
-![7.a.3](./scr/2021-02-18_155430.jpg)  
+![7.b.3](./scr/2021-02-18_155430.jpg)  
 
 ##### 4. What non-existent pages were clients referred to?  
 
@@ -166,7 +166,7 @@ gawk '$9=="404" {print $7 "\t HTTP ERROR code: "$9}' $1 > $file_out
 less $file_out
 ```
 
-![7.a.4](./scr/2021-02-18_183827.jpg)  
+![7.b.4](./scr/2021-02-18_183827.jpg)  
 
 ##### 5. What time did site get the most requests?  
 
@@ -192,7 +192,7 @@ gawk '{print $4}' $1 | cut -c 2-18 | sort | uniq -c | sort -gr > $file_out
 printIln
 ```
 
-![7.a.5](./scr/2021-02-19_153414.jpg)  
+![7.b.5](./scr/2021-02-19_153414.jpg)  
 
 ##### 6. What search bots have accessed the site? (UA + IP)  
 
@@ -206,7 +206,54 @@ gawk '/Googlebot|[bB]ingbot|Mail\.RU_Bot|MJ12bot|YandexBot|Mediatoolkitbot|Grape
 $1,$12,$13,$14,$15,$16}' $1 | sort -u | tee $file_out
 ```
 
-![7.a.6](./scr/2021-02-19_183417.jpg)  
+![7.b.6](./scr/2021-02-19_183417.jpg)  
+
+#### C. Create a data backup script that takes the following data as parameters:  
+1. Path to the syncing  directory.   
+2. The path to the directory where the copies of the files will be stored.  
+
+```
+cat 7c1
+
+#!/bin/bash
+
+SRCDIR=/home/ubuntu/EPAM/Univer/imp-data
+DESTDIR=s3://roolrd-back-up-folder-use-script
+TMPDIR=/home/ubuntu/EPAM/Univer/C
+
+aws s3 sync $SRCDIR $DESTDIR && echo "files synchronized at `date`" &>> $TMPDIR/imp-data.log
+
+#First list of files
+ls -a $SRCDIR > $TMPDIR/prev_ls
+ls -la $SRCDIR > $TMPDIR/prev_la
+
+sleep 1m
+
+#Next checking
+ls -a $SRCDIR > $TMPDIR/next_ls
+ls -la $SRCDIR > $TMPDIR/next_la
+
+#deleted files
+diff $TMPDIR/next_ls $TMPDIR/prev_ls | gawk '/>/{print $2}' > $TMPDIR/del_files
+
+#created files
+diff $TMPDIR/next_ls $TMPDIR/prev_ls | gawk '/</{print $2}' > $TMPDIR/new_files
+
+#deleted files input log
+for I in `cat $TMPDIR/del_files`
+do
+gawk -v var1="$I" -v var2="$SRCDIR" '{if($9==var1) print "file " var2"/"$9 " was \
+deleted_or_moved at " $6,$7,$8}' $TMPDIR/prev_la >> $TMPDIR/imp-data.log
+done
+
+#created files input log
+for i in `cat ./C/new_files`
+do
+ls -la $SRCDIR/$i | gawk '{print "file " $9 " was created at " $6,$7,$8}' >> $TMPDIR/imp-data.log
+done
+```
+
+Create "crontab"-schedule:  
 
 
-
+![7.b.6](./scr/2021-02-19_183417.jpg)
