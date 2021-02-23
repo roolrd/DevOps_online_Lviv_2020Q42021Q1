@@ -227,7 +227,7 @@ aws s3 sync $SRCDIR $DESTDIR && echo "files synchronized at `date`" &>> $TMPDIR/
 ls -a $SRCDIR > $TMPDIR/prev_ls
 ls -la $SRCDIR > $TMPDIR/prev_la
 
-sleep 1m
+sleep 58s
 
 #Next checking
 ls -a $SRCDIR > $TMPDIR/next_ls
@@ -255,5 +255,5 @@ done
 
 Create "crontab"-schedule:  
 
+![7.c.6](./scr/2021-02-23_184313.jpg)  
 
-![7.b.6](./scr/2021-02-19_183417.jpg)
