@@ -17,7 +17,7 @@ Result in Jupiter
 
 ![9.4](./scr/2021-03-01_150730.jpg)  
 
-I'll try fix it when I have time....
+I'll try to fix it little bit later...
 
 #### 2. Count vowels  
 
