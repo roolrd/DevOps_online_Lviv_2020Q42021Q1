@@ -31,7 +31,7 @@ We can get information about active sessions of all users, which virtual console
 
 #### 4. Change personal information about myself  
 
-![1.4](./scr/2021-01-![18_143641.jpg)  
+![1.4](./scr/2021-01-18_143641.jpg)  
 
 #### 5. Linux help system and the man and info commands  
 ```
