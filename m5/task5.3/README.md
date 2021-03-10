@@ -401,15 +401,15 @@ powershell.exe -ExecutionPolicy Bypass -File install-sshd.ps1
 ```
 New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
 ```
-– or go to Control Panel > System and Security > Windows Firewall> Advanced Settings > Inbound Rules and add a new rule for port 22.
-1.5 Create the C:\Users\admin\.ssh folder 
-1.6 Create the file “authorized_keys” under ~./.ssh
-1.7 Run the scrips to fix/check correct permission a PowerShell with administrator privilege
+– or go to Control Panel > System and Security > Windows Firewall> Advanced Settings > Inbound Rules and add a new rule for port 22.  
+1.5 Create the C:\Users\admin\.ssh folder  
+1.6 Create the file “authorized_keys” under ~./.ssh  
+1.7 Run the scrips to fix/check correct permission a PowerShell with administrator privilege  
 ```
 > powershell.exe -ExecutionPolicy Bypass -File FixHostFilePermissions.ps1 > powershell.exe -ExecutionPolicy Bypass -File FixUserFilePermissions.ps1
 ```
-1.8 Personalize your SSH server settings editing the configuration file %PROGRAMDATA%\ssh\sshd_config
-1.9 Start sshd (this will automatically generate host keys under %programdata%\ssh if they don't already exist)
+1.8 Personalize your SSH server settings editing the configuration file %PROGRAMDATA%\ssh\sshd_config  
+1.9 Start sshd (this will automatically generate host keys under %programdata%\ssh if they don't already exist)  
 ```
 net start sshd
 ```
