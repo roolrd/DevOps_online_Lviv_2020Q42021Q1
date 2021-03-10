@@ -444,39 +444,39 @@ $ sudo nano /etc/ssh/sshd_config
 ```
 #unkomment necessary lines
 
-#Disable root user login
-...................
-PermitRootLogin no
-ChallengeResponseAuthentication no
-PasswordAuthentication no
-UsePAM no
+#Disable root user login  
+...................  
+PermitRootLogin no  
+ChallengeResponseAuthentication no  
+PasswordAuthentication no  
+UsePAM no  
 
-#Disable password based login
-.....................
-AuthenticationMethods publickey
-PubkeyAuthentication yes
+#Disable password based login  
+.....................  
+AuthenticationMethods publickey  
+PubkeyAuthentication yes  
 
-#Limit Users’ ssh access
-.......................
-AllowUsers ruslan riznyk
+#Limit Users’ ssh access  
+.......................  
+AllowUsers ruslan riznyk  
 
-#Disable Empty Passwords
-..................
-PermitEmptyPasswords no
+#Disable Empty Passwords  
+..................  
+PermitEmptyPasswords no  
 
-#Change SSH Port and limit IP
-.............................
-Port 58982 #won't work if we'd like to connect to github 
-ListenAddress 192.168.0.163
-ListenAddress 192.168.0.188
+#Change SSH Port and limit IP  
+.............................  
+Port 58982 #won't work if we'd like to connect to github    
+ListenAddress 192.168.0.163  
+ListenAddress 192.168.0.188  
 
-#Set more secure SSH2 protocol
-Protocol 2
+#Set more secure SSH2 protocol  
+Protocol 2  
 
-#set directory where server has to look for publickey
-AuthorizedKeysFile %h/.ssh/authorized_keys
+#set directory where server has to look for publickey  
+AuthorizedKeysFile %h/.ssh/authorized_keys  
 
-restart sshd service
+restart sshd service  
 ```
 $ sudo systemctl restart sshd
 ```
